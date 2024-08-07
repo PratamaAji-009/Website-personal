@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaksi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        header nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        td {
+            padding: 10px 0;
+        }
+        input[type=text], textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0;
+        }
+        input[type=button], input[type=reset] {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><marquee>Small Form Factor</marquee></h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">Tentang</a>
+        </nav>
+    </header>
+    <main>
+        <center>
+        <h2><b>Transaksi</b></h2>
+        <form id="transaksiForm">
+            <hr>
+            <table>
+                <tr>
+                    <td>Nama Anda</td>
+                    <td>: <input type="text" name="nama" id="nama" size="30"></td>
+                </tr>
+                <tr>
+                    <td>Alamat</td>
+                    <td>: <input type="text" name="alamat" id="alamat" size="30"></td>
+                </tr>
+                <tr>
+                    <td>E-Mail</td>
+                    <td>: <input type="text" name="email" id="email" size="30"></td>
+                </tr>
+                <tr>
+                    <td>Jenis Case</td>
+                    <td>
+                        <input type="radio" name="case" value="NRP200p|1290000"> NR200p (Rp1.290.000) 
+                        <br><input type="radio" name="case" value="Fractal|2429000"> Fractal Ridge (Rp2.429.000)
+                        <br><input type="radio" name="case" value="PCCooler|856000"> PCCooler i100 (Rp856.000)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pembayaran</td>
+                    <td>
+                        <input type="radio" name="bayar" value="qris"> Qris 
+                        <input type="radio" name="bayar" value="Transfer_bank"> Transfer Bank
+                        <input type="radio" name="bayar" value="Paylater"> Paylater
+                    </td>
+                </tr>
+                <tr>
+                    <td>Keterangan</td>
+                    <td>: <textarea name="keterangan" id="keterangan" cols="40" rows="5"></textarea></td>
+                </tr>
+            </table>
+            <hr>
+            <input type="button" value="Checkout" onclick="checkout()">
+            <input type="reset" value="Reset">
+        </form>
+        </center>
+    </main>
+    <footer>
+        <p><b>Social Media</b></p>
+        <a href="https://www.facebook.com/groups/2021600974763728/"><img src="/image/facebook.png" width="25" height="25"></a>
+        <a href="https://www.instagram.com/sffpc/"><img src="/image/instagram.png" width="25" height="25"></a>
+        <a href="https://www.reddit.com/r/sffpc/"><img src="/image/reddit.png" width="25" height="25"></a>
+    </footer>
+
+    <script>
+        function checkout() {
+            const form = document.getElementById('transaksiForm');
+            const formData = new FormData(form);
+            const transaksiData = {};
+
+            formData.forEach((value, key) => {
+                transaksiData[key] = value;
+            });
+
+            localStorage.setItem('transaksiData', JSON.stringify(transaksiData));
+            window.location.href = 'invoice.html';
+        }
+    </script>
+</body>
+</html>
